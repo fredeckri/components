@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="jquery-3.5.1.js"></script>
+        <script src="TermometroSVG.js"></script>
+    </head>
+    <body>
+        
+    </body>
+    <script>
+            let Tsvg = new Termometro('tsvg');
+            Tsvg.Width=200;
+            Tsvg.Height=200;
+            setInterval(()=>{
+            Tsvg.SetTemperatura(Math.random(1)*395);    
+            },1000);
+            $('body').prepend(Tsvg.SvgTermometro);
+    </script>
+</html>
