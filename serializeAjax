@@ -1,0 +1,175 @@
+<div class="col-9 col-s-9" style="margin-left:10%">
+<form id="form1">
+  <div class="form-row">
+    <div class="col">
+    <label for="Sobrenome"> Nome</label>
+      <input id="nome" type="text" name="nome" class="form-control" placeholder="Nome" autocomplete="off" required>
+    </div>
+    <div class="col">
+    <label for="Sobrenome"> Sobrenome</label>
+      <input id="sobrenome" type="text" name="sobrenome" class="form-control" placeholder="Sobrenome" autocomplete="off" required>
+    </div>
+  </div>
+  <br>
+  <div class="form-row">
+    <div class="col">
+    <label for="Sobrenome"> CPF</label>
+      <input id="cpf" type="cpf" name="cpf" id="cpfcnpj" class="form-control" placeholder="000.000.000-00" autocomplete="off" required>
+    <br>
+    <p>Opção:
+    <label for='opcao'>SIM</label>
+        <input id="iopcao" class='radio' type='radio' name='iopcao' value='1' id='opcao1' ></td>
+        <td><label for='opcao'>NÃO</label>
+        <input id="iopcao" class='radio' type='radio' name='iopcao' value='2' id='opcao2' ></td>
+    </div>
+  </div>
+    
+  <div class="form-row">
+    <div class="col">
+    <label for="idcurso"> Id</label>
+      <input id="idcurso" type="text" name="idcurso" class="form-control" placeholder="0000000" autocomplete="off" disabled>
+    </div>
+    <div class="col">
+    <label for="Sobrenome"> Curso</label>
+      <input id="curso" type="text" name="curso" class="form-control" placeholder="Nome" autocomplete="off" disabled>
+    </div>
+  </div>
+
+  <br>
+   
+   <hr>
+   <div class="form-row">
+   
+   <div class="col">
+   <label for="usuario"> Usuário</label>
+      <input id="usuario" type="text"  name="usuario" value="administrador" class="form-control" placeholder="usuario" autocomplete="off" required>
+    </div>
+    
+    <div class="col">
+    <label for="senha_a"> Senha</label>
+      <input id="senha" type="password" name="senha_a" value="pid96sqdi" class="form-control" placeholder="**************" autocomplete="off" required>
+    </div>
+    
+  </div>
+  <br>
+  <button type="submit" id="enviar" class="btn btn-primary w-100">Incluir Aluno</button><br><br>
+  
+  </form>
+</div>
+<script>
+//action="assets/asp/in_aluno.asp"
+var request;
+ $('#form1').submit(function(e)  {
+            e.preventDefault();
+          //$.post( "/assets/asp/in_aluno.asp", $( "#form" ).serialize() );            
+          // Abort any pending request
+    if (request) {
+        request.abort();
+    }
+    // setup some local variables
+    var $form = $(this);
+
+    // Let's select and cache all the fields
+    var $inputs = $form.find("input, select, button, textarea");
+
+    // Serialize the data in the form
+    var serializedData = $form.serialize();
+
+    // Let's disable the inputs for the duration of the Ajax request.
+    // Note: we disable elements AFTER the form data has been serialized.
+    // Disabled form elements will not be serialized.
+    $inputs.prop("disabled", true);
+
+    // Fire off the request to /form.php
+    request = $.ajax({
+        url: "/assets/asp/in_aluno.asp",
+        type: "post",
+        data: serializedData
+    });
+
+    // Callback handler that will be called on success
+    request.done(function (response, textStatus, jqXHR){
+        // Log a message to the console
+        console.log("Dados enviados com sucesso");
+    });
+
+    // Callback handler that will be called on failure
+    request.fail(function (jqXHR, textStatus, errorThrown){
+        // Log the error to the console
+        console.error(
+            "O seguinte erro foi encontrado"+
+            textStatus, errorThrown
+        );
+    });
+
+    // Callback handler that will be called regardless
+    // if the request failed or succeeded
+    request.always(function () {
+        // Reenable the inputs
+        $inputs.prop("disabled", false);
+    });
+
+        });  
+
+               
+    /*       $('#form1').submit(function(e) {
+              e.preventDefault();
+              var data = $("#form1").serialize()
+              
+              $.post({
+                  url: '/assets/asp/in_aluno.asp',
+                  data: data,
+                  cache: false,
+                  contentType: false,
+                  async:  true,
+                  success: function (data, status) {
+                          //Caso não ocorra nenhum tipo de erro:
+                           console.log('Requisição efetuada com sucesso');
+                  },
+                  error: function (request, status, error) {
+                      alert(request.responseText);
+                        }
+          });
+              
+          return false;
+          
+         });   
+        
+function AjaxPost() {
+    var dados=`usuario=${$("#usuario").val()}&senha_a=${$("#senha").val()}&nome=${$("#nome").val()}&sobrenome=${$("#sobrenome").val()}&iopcao=${$("#iopcao").val()}&cpf=${$("#cpf").val()}`;
+                  console.log(dados);
+                  console.log(typeof(dados));
+    $.ajax({
+        
+        url : '/assets/asp/in_aluno.asp',
+        type : 'post',
+        async:false,
+        data : {dados}, //passar o objeto como string para requisição pode ser um array de objetos
+        beforeSend : function(){
+             console.log("ENVIANDO...");
+        }
+        })
+        .done(function(){ console.log('Requisição efetuada com sucesso');})
+        .fail(function(jqXHR, textStatus, msg){ alert(msg); });
+}
+
+console.log('enviado');
+            if (($("#usuario").text()).length>0) return;
+            else {
+                     console.log('enviado1');
+                let chamada1 = new CustomAjax();
+                chamada1.Url='http://localhost/assets/asp/in_aluno.asp';
+                let dados= {
+                  usuario:$("#usuario").val(),
+                  senha:$("#senha").val(),
+                  nome:$("#nome").val(),
+                  sobrenome:$("#sobrenome").val(),
+                  curso:$("#curso").val(),
+                  idcurso:$("#idcurso").val()}
+                  console.log(dados);
+                  console.log(typeof(dados));
+                chamada1.Dados=dados;
+                chamada1.AjaxPost();
+            }
+*/
+</script>
