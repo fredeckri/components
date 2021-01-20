@@ -1,0 +1,36 @@
+<%
+Set db_conn = Server.CreateObject("ADODB.Connection")
+str_conn = "Provider=SQLOLEDB;Server=*****;User ID=*****;Password=*****;Database=*******;"
+db_conn.connectionstring = str_conn
+db_conn.Open
+
+Set rs = Server.CreateObject("ADODB.Recordset")
+%>
+    <%
+    'FAZER TRATAMENTO DE REQUESTS
+    dim user_a,senha_a
+        
+    user_a = Request.Form("usuario")
+    senha_a = Request.Form("senha_a")
+
+    
+    rs.open "select [dbo].verificausuario('"&user_a&"','"&senha_a&"')", db_conn
+       
+    If rs.Fields.item(0)=1 then
+    sql ="Exec [insercao_aluno_dt_automatica02] @nome='"&Request.Form("nome")&"',@sobrenome='"&Request.Form("sobrenome")&"',@cpf='"&Request.Form("cpf")&"',@iopcao='"&Request.Form("iopcao")&"'"
+    db_conn.execute sql, recaffected
+    
+       if err<>0 then
+       Response.Write("Sem Autorizacao!")
+       else
+       Response.Write("<h3>" & recaffected & " Insercao realizada com sucesso!</h3>")   
+       Response.Redirect "../../../aluno.asp"&"?resp=Cadastrado com Sucesso!"'
+       end if
+            
+       ,
+    else
+    Response.Redirect "../../../aluno.asp"&"?resp=Acesso Negado!"&Request.Form("nome")   
+    
+   end if
+   db_conn.close
+    %>
