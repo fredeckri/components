@@ -1,0 +1,235 @@
+<%@ LANGUAGE=VBScript %>
+<%
+Dim titulo
+titulo = "<h1>Request's entre páginas</h1><br>"
+Diretores=2574
+Alunos=1231
+Professores=3654
+selecionada=Request.QueryString("selecionada")
+dim respPost
+respPost=Request.Form("presidente")
+
+If respPost<>"" Then
+    Response.Write("Hello Presidente " & respPost & "!<br>")
+End if
+%>
+
+
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Request</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+    integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+
+  <!-- jQuery and JS bundle w/ Popper.js -->
+  <script src="jquery-3.5.1.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
+    crossorigin="anonymous"></script>
+  
+</head>
+
+<body>
+  <div>
+    <%=titulo%>
+    <!-- Trigger the modal with a button -->
+    <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Aluno</button>
+
+    <button type="button" class="btn btn-secondary btn-lg" data-toggle="modal"
+      data-target="#myModal02">Professores</button>
+
+    <button type="button" class="btn btn-warning btn-lg" data-toggle="modal" data-target="#myModal03">Diretores</button>
+
+    <button type="button" class="btn btn-light btn-lg" data-toggle="modal" data-target="#myModal04">Vazio</button>
+
+    <button type="button" class="btn btn-light btn-lg" data-toggle="modal" data-target="#myModal05">Presidente</button>
+
+    <!-- Modal -->
+    <div id="myModal" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Alunos</h4>
+          </div>
+          <div class="modal-body">
+            <p><a href="default.asp?selecionada=<%=Alunos%>"> Grupo Alunos </a><br></p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <div id="myModal02" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Professor</h4>
+          </div>
+          <div class="modal-body">
+            <p><a href="default.asp?selecionada=<%=Professores%>"> Grupo Professores </a><br></p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <div id="myModal03" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Alunos</h4>
+          </div>
+          <div class="modal-body">
+            <p><a href="default.asp?selecionada=<%=Diretores%>"> Grupo Diretores </a><br></p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <div id="myModal04" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Alunos</h4>
+          </div>
+          <div class="modal-body">
+            <p><a href="default.asp?selecionada="> Grupo Vazio </a></p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <div id="myModal05" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Alunos</h4>
+          </div>
+          <div class="modal-body">
+            <form action="default.asp" method="post">
+              <input type="text" name="presidente" readonly value="Frederick Marques" style="backgroundColor:'gray'">
+              <input type="submit" value="Submit" />
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <button id="btnBol1">BOTAO 1</button>
+    <button id="btnBol2">BOTAO 2</button>
+    <button id="btnBol3">BOTAO 3</button>
+    <button id="btnBol4">BOTAO 4</button>
+    <button id="btnBol5">BOTAO 5</button>
+
+
+
+
+
+
+
+    <p id="selecao"><%=selecionada%></p>
+    <p id="resp"></p>
+    <p id="resp1"></p>
+
+  </div>
+
+</body>
+<script>
+  $(function () {
+    if ($("#selecao").text() == '2574') { $("#resp").text("Diretor") }
+    if ($("#selecao").text() == '1231') { $("#resp").text("Aluno") }
+    if ($("#selecao").text() == '3654') { $("#resp").text("Professor") }
+    if ($("#selecao").text() == "") { $("#resp").text("Nenhum Selecionado!") }
+
+
+
+    for (let i = 1; i <= 5; i++) {
+      $(`#btnBol${i}`).click(function () {
+        //document.getElementById("btnBol1").addEventListener('click',function(){
+        alert(`teste${i}`);
+        switch (i) {
+          case 1: {
+
+            Swal.fire({
+              title: 'Deseja salvar?',
+              showDenyButton: true,
+              showCancelButton: true,
+              confirmButtonText: `Save`,
+              denyButtonText: `Não salvar`,
+            }).then((result) => {
+              /* Read more about isConfirmed, isDenied below */
+              if (result.isConfirmed) {
+                Swal.fire('Saved!', '', 'success')
+              } else if (result.isDenied) {
+                Swal.fire('Não foi Salvo', '', 'info')
+              }
+            })
+            break;
+          }
+          case 2: {
+            Swal.fire({
+              title: 'Deseja Salvar?',
+              showDenyButton: true,
+              showCancelButton: true,
+              confirmButtonText: `Salvar`,
+              denyButtonText: `Não continuar`,
+            }).then((result) => {
+              /* Read more about isConfirmed, isDenied below */
+              if (result.isConfirmed) {
+                Swal.fire('Concluído!', 'Concluído com sucesso!', 'success')
+              } else if (result.isDenied) {
+                Swal.fire('Atênção', 'Não foi Concluído!', 'warning')
+              }
+            })
+            break;
+          }
+
+
+
+
+        } //end switch
+
+      });
+    }
+  });
+</script>
+
+</html>
