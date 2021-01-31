@@ -40,14 +40,19 @@ Set rs = Server.CreateObject("ADODB.Recordset")
        <%
        if (reqaluno<>"") then
        rs.open "SELECT idaluno, nome FROM [dbo].[aluno] where nome like '%"&reqaluno&"%'", db_conn
-        else
+      %>
+        <%else%>
+       
+       <!--#include file="titulo.asp"-->
+       
+        <%
         rs.open "SELECT idaluno, nome FROM [dbo].[aluno]", db_conn       
        end if
         %>
  <%
                     dim curso,data
 %>   <div>
-    <select class="select2-selection--clearable js-example-theme-single" name="categoria" id="sel" style="width: 50%; ">
+    <select class="js-example-theme-single" name="categoria" id="sel" style="width: 50%; ">
      
            <%
      'if (reqaluno<>"") then
@@ -66,6 +71,8 @@ Set rs = Server.CreateObject("ADODB.Recordset")
 
      %>
     </select>
+    <hr>
+    <button id="btnZerar" class="btn btn-warning w-50"> Zerar </button>
     </div>
     </body>
     <script>
@@ -76,14 +83,20 @@ Set rs = Server.CreateObject("ADODB.Recordset")
         console.log($("#sel option:selected").text());
         }
         );
+        function zerar() {
+          window.location.href =`http://localhost/request/testecombo.asp?reqaluno=`;
+        }
+
+        $("#btnZerar").click(function(){zerar()});
         $(".js-example-theme-single").select2({
         tags: true,
-        language: "pt-br",
         width:'resolve',
         theme: "classic",
         searchable:true,
-        minimumInputLength: 3
+        //minimumInputLength: 2,
+        positionDropdown: true
         });
+
       /*
       $("#sel option:selected").text()
 "Gabriel"
