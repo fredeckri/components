@@ -1,0 +1,54 @@
+var rawData = [
+  {
+    id: 'AL',
+    name: 'Alaska'
+  },
+  {
+    id: 'GE',
+    name: 'Georgia'
+  },
+  {
+    id: 'WY',
+    name: 'Wyoming'
+  },
+  {
+    id: 'WY',
+    name: 'Wyoming'
+  },
+  {
+    id: 'WY',
+    name: 'Wyoming'
+  },
+  {
+    id: 'WY',
+    name: 'Wyoming'
+  },
+  {
+    id: 'WY',
+    name: 'Wyoming'
+  },
+  {
+    id: 'WY',
+    name: 'Wyoming'
+  },
+  {
+    id: 'GE',
+    name: 'Georgia'
+  }
+];
+
+
+function clearDuplicates(data) {
+  var temp = {};
+  
+  for (var i = 0; i < data.length; i++) {
+    temp[data[i]['id']] = data[i];
+  }
+  
+  return Object.values(temp);
+}
+
+
+var clearData = clearDuplicates(rawData);
+
+console.log(clearData);
