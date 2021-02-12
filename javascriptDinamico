@@ -1,5 +1,10 @@
-var script = document.createElement('script');
+         var script = document.createElement('script');
+          script.setAttribute('id', 'scriptTermometro');
           script.src = "_includes/_footer/scripts.js";
           document.body.appendChild(script);
+          $("#scriptTermometro").remove();  
           
-          cada requisicao invoca o elemento novamente
+         /* var script = document.createElement('script');
+          script.setAttribute('id', 'scriptTermometro');
+          script.src = "_includes/_footer/scripts.js";
+          document.body.appendChild(script);*/
