@@ -1,0 +1,5 @@
+var script = document.createElement('script');
+          script.src = "_includes/_footer/scripts.js";
+          document.body.appendChild(script);
+          
+          cada requisicao invoca o elemento novamente
