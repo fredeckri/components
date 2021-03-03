@@ -1,0 +1,44 @@
+ $("#reincidenciaMatriz").click(
+           function(){ 
+
+                Swal.fire({
+                title: 'Ocorrências com reincidência?',
+                text: "Deseja enviar Ocorrência a ser analisada?",
+                icon: 'warning',
+                allowEscapeKey:false,
+                allowOutsideClick:false,
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                cancelButtonText: 'Cancelar',
+                confirmButtonText: 'Sim desejo enviar!'
+                }).then((result) => {
+                
+                
+                
+                
+                if ((result.isConfirmed) && ((localstor.getItem('conv132456')!=true))) 
+                    {
+                    Swal.fire(
+                    'Enviar!',
+                    'Ocorrências já enviadas para análise!',
+                    'info'
+                    )
+
+                    }
+                     else
+                     {
+                        //ajaxUpdateReincidencias();
+                        localstor.setItem('conv132456',true)
+                        Swal.fire(
+                        'Enviar!',
+                        'Ocorrências do convênio enviadas para análise!',
+                        'success'
+                        )
+
+                     }
+                })
+
+              
+           }
+    )
