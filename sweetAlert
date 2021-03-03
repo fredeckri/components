@@ -1,3 +1,27 @@
+  <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#reincidencia" role="tab">
+                        <span class="hidden-sm-up"><i class="fas fa-info"></i></span>
+                        <span class="hidden-xs-down"><%=titulo(4)%></span></a>
+                </li>
+                
+                    <!--Aba03-->
+                <div class="tab-pane  p-20" id="reincidencia" role="tabpanel">
+                   <div class="modal-body">
+                        <!-- .row -->
+                        <div class="row">
+                            <div class="col-8">
+                                <div class="row show-grid mb-2">
+                                    <div class="col-8 ">Deseja enviar para *** analisar reincidências da ocorrência </div>
+                                    <div class="col-1"><button class="btn btn-success" id="reincidenciaMatriz">Reincidência</button></div>
+                                </div>
+                          
+                            </div>
+                           
+                        </div>
+                        <!-- .row -->
+                    </div>
+                </div>
+                <!--Aba03-->
+ 
  $("#reincidenciaMatriz").click(
            function(){ 
 
