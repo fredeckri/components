@@ -1,0 +1,19 @@
+
+declare @data date = getdate()
+declare @d365 int = 180
+declare @d180 int = 180
+declare @all int = 1825
+SELECT [idaluno]
+      ,[nome]
+      ,[cpf]
+      ,[datacadastro]
+      ,[sobrenome]
+      ,[iopcao]
+  FROM [dbo].[aluno]
+  where datacadastro between cast(dateadd (day,-@all,getdate()) as date)  and @data -- 5 anos
+
+--declare @variavel varchar(20) = cast(dateadd (day,-60,getdate()) as date)
+--select @variavel
+GO
+
+
