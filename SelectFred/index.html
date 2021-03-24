@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select2 - inicio</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="estilo.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"
+        integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+        integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+        integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+</head>
+<style>
+    .search-Fred {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        max-width: 100vw;
+        max-height: 400px;
+
+    }
+
+    .search-Fred #itens {
+        transition: 500ms;
+        flex-direction: column;
+        flex-wrap: wrap;
+        width: 300px;
+        max-height: 120px;
+        min-height: 0;
+        overflow-y: auto;
+        font-size: 22px;
+        background-color: rgb(250, 250, 250);
+        opacity: 0.7;
+        scrollbar-width: thin;
+        position: absolute;
+        z-index: 100;
+        margin-top: 160px;
+        text-align: justify;
+        padding-left: 5px;
+
+        cursor: pointer;
+        outline: none;
+        display: none;
+        border: none;
+        transition: 500ms;
+    }
+
+    @keyframes spin {
+        100% {
+            transform: rotateZ(360deg);
+        }
+    }
+
+    .search-Fred #itens:hover {
+
+        opacity: 1;
+        transition: 500ms;
+        background: linear-gradient(0% rgba(252, 253, 210, 0.9), 100% rgba(252, 223, 210, 0.9));
+    }
+
+    .search-Fred #itens div:hover {
+
+        background-color: rgb(248, 246, 116);
+        opacity: 0.9;
+        transition: 500ms;
+    }
+
+    .labelPesquisa {
+        position: relative;
+    }
+
+    .labelPesquisa:before {
+        content: "";
+        position: absolute;
+        left: 15px;
+        top: 0;
+        bottom: 0;
+        width: 20px;
+        opacity: 0.7;
+        
+        background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 22 22' fill='gray' opacity='0.7' fill-rule='evenodd'%3E%3Cpath d='M16.036 18.455l2.404-2.405 5.586 5.587-2.404 2.404zM8.5 2C12.1 2 15 4.9 15 8.5S12.1 15 8.5 15 2 12.1 2 8.5 4.9 2 8.5 2zm0-2C3.8 0 0 3.8 0 8.5S3.8 17 8.5 17 17 13.2 17 8.5 13.2 0 8.5 0zM15 16a1 1 0 1 1 2 0 1 1 0 1 1-2 0'%3E%3C/path%3E%3C/svg%3E") center / contain no-repeat;
+    }
+
+    .inputPesquisa {
+        width: 300px;
+        display: flex;
+        height: 100%;
+        flex-direction: column;
+        flex-wrap: wrap;
+        max-width: inherit;
+        max-height: 200px;
+        overflow-y: auto;
+        font-size: 22px;
+        margin: 10px;
+        border-radius: 20px;
+
+        outline: none;
+        text-align: center;
+        padding: 5px 20px 5px 5px;
+        border: #ddd solid 1px;
+    }
+
+    .inputPesquisa::-moz-placeholder {
+        /* Firefox 19+ */
+        color: rgb(177, 164, 50);
+        text-align: center;
+        font-size: 20px;
+    }
+
+    label {
+        position: relative;
+    }
+
+    label>.icon {
+        position: absolute;
+        top: 50%;
+        left: 10px;
+        transform: translateY(-50%);
+        color: silver;
+    }
+
+    label>input {
+        padding-left: calc(1em + 10px + 8px);
+        /* icon width + icon padding-left + desired separation*/
+        height: 2em;
+    }
+
+    /*
+  SVG SpriteSheet
+*/
+
+    .spritesheet {
+        display: none;
+    }
+
+    .icon {
+        display: inline-block;
+        width: 1em;
+        height: 1em;
+        stroke-width: 0;
+        stroke: currentColor;
+        fill: currentColor;
+    }
+</style>
+
+<body>
+
+    <div class="search-Fred">
+        <label for="pesquisa">Pesquisa:
+        </label>
+        <div class="input-group">
+            <label class="labelPesquisa" for="pesquisa">
+                <input type="text" id="pesquisa" class="inputPesquisa" placeholder="Digite para pesquisar">
+            </label>
+        </div>
+        <div id="itens"></div>
+        <div>Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos, e vem
+            sendo utilizado desde o século XVI, quando um impressor desconhecido pegou uma bandeja de tipos e os
+            embaralhou para fazer um livro de modelos de tipos. Lorem Ipsum sobreviveu não só a cinco séculos, como
+            também ao salto para a editoração eletrônica, permanecendo essencialmente inalterado. Se popularizou na
+            década de 60, quando a Letraset lançou decalques contendo passagens de Lorem Ipsum, e mais recentemente
+            quando passou a ser integrado a softwares de editoração eletrônica como Aldus PageMaker.</div>
+    </div>
+    <div>
+    <label clas="name-label">
+        <svg class="icon icon-user">
+          <use xlink:href="#icon-user"></use>
+        </svg>
+        <input type="text" placeholder="Name">
+      </label>
+      
+      
+      <label clas="name-label">
+        <svg class="icon icon-envelop">
+          <use xlink:href="#icon-envelop"></use>
+        </svg>
+        <input type="text" placeholder="Email">
+      </label>
+      
+      
+      
+      <svg class="spritesheet">
+        <symbol id="icon-user" viewBox="0 0 32 32">
+          <title>user</title>
+          <path d="M18 22.082v-1.649c2.203-1.241 4-4.337 4-7.432 0-4.971 0-9-6-9s-6 4.029-6 9c0 3.096 1.797 6.191 4 7.432v1.649c-6.784 0.555-12 3.888-12 7.918h28c0-4.030-5.216-7.364-12-7.918z"></path>
+        </symbol>
+        <symbol id="icon-envelop" viewBox="0 0 32 32">
+          <title>envelop</title>
+          <path d="M29 4h-26c-1.65 0-3 1.35-3 3v20c0 1.65 1.35 3 3 3h26c1.65 0 3-1.35 3-3v-20c0-1.65-1.35-3-3-3zM12.461 17.199l-8.461 6.59v-15.676l8.461 9.086zM5.512 8h20.976l-10.488 7.875-10.488-7.875zM12.79 17.553l3.21 3.447 3.21-3.447 6.58 8.447h-19.579l6.58-8.447zM19.539 17.199l8.461-9.086v15.676l-8.461-6.59z"></path>
+        </symbol>
+      </svg>
+    </div>
+</body>
+<script>
+
+    $("#pesquisa").click(() => { 
+        if ($("#pesquisa").val() == '') { return $('#itens').empty() }
+        $('#itens').css('display', 'block') 
+    
+    });
+    $("#pesquisa").keydown(function() {
+        
+        if ($("#pesquisa").val() == '') { return $('#itens').empty() }
+        $.ajax({
+            url: 'doc.json',
+            async: true,
+            type: 'get',
+            beforeSend: function () {
+
+                console.log("Enviando...");
+
+            },
+            headers: {
+                'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+            }
+        })
+            .done(function (data) {
+                $(`#itens`).empty();
+                let itens = '', dados01;
+
+                let searchField = $('#pesquisa').val();
+                let expression = new RegExp(searchField, "i");
+                $.each(data, function (key, value) {
+                    if (value.nome.search(expression) != -1) {
+                        $(`#itens`).append(`<div id="${value.id}">${value.nome}</div>`)
+                        $(`#${value.id}`).click(() => {
+                            console.log("oi clicou no" + value.id)
+                            $('#pesquisa').val($(`#${value.id}`).text())
+                            $('#itens').css('display', 'none')
+                            
+                        })
+                    }
+
+                })
+            })
+            .fail(function (jqXHR, textStatus, msg) {
+                alert(msg);
+            });
+
+    })
+
+
+</script>
+
+</html>
